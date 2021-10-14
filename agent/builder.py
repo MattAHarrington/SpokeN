@@ -44,17 +44,27 @@ class Executor(object):
         # Stager
         self.stager_template = os.path.join('bot', 'template_stager.py')
         self.stager_py_temp = os.path.join('bot', filename + '.py')
-        self.stager_compiled = os.path.join(self.dist_path, filename + '.exe')
+        self.stager_compiled = os.path.join(self.dist_path, filename)
 
         # Payload
         self.bot_template = os.path.join('bot', 'template_payload.py')
 
         payload_name = os.path.splitext(
-            os.path.basename(const.PAYLOAD_PATH))[0]
+            os.path.basename(const.PAYLOAD_PATH + const.PAYLOAD_NAME))[0]
 
         self.bot_py_temp = os.path.join('bot', payload_name + '.py')
-        self.bot_compiled = os.path.join(
-            self.dist_path,  payload_name + '.exe')
+        self.bot_compiled = os.path.join(self.dist_path,  payload_name)
+
+        # Suite of debugging prints
+        print()
+        print(f'[STAGER template:] {self.stager_template}')
+        print(f'[STAGER_py_template] {self.bot_py_temp}')
+        print(f'[BOT_compiled:] {self.bot_compiled}')
+        print('-----------------------------------')
+        print(f'[BOT template:] {self.bot_template}')
+        print(f'[BOT_py_temp:] {self.bot_py_temp}')
+        print(f'[BOT_compiled:] {self.bot_compiled}')
+        print()
 
     def replace(self, data, _dict):
         for k in _dict:
@@ -158,5 +168,5 @@ if __name__ == '__main__':
 
         executor.start()
         os.system('cls' if is_win else 'clear')
-        print('\nFinished generating {}'.format(executor.filename + '.exe'))
+        print(f'Finished generating {executor.filename}')
         print('Look in the directory named \'output\' for your exe file')
