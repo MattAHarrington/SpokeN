@@ -125,11 +125,14 @@ class Server(object):
         '''Send payload to stager
         '''
 
+        print(f"inside send_payload looking for {const.PAYLOAD_PATH}")
+
         if not path.exists(const.PAYLOAD_PATH):
             print('Payload binary does not exist; please generate it')
             return
 
         with open(const.PAYLOAD_PATH, 'rb') as f:
+            print(f'Found {const.PAYLOAD_PATH}!')
             while True:
                 data = f.read(const.BLOCK_SIZE)
 

