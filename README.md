@@ -53,14 +53,23 @@ Loki, just like all my other repos is stricly for **educational** purposes.
 -   SFTP
 -   SSH
 
-### Video
+### Video from OG dev (enjoy the music!)
 
 https://www.youtube.com/watch?v=UTfZlXGoJ5Y
 
 ### Installation
 
+I reccommend you setup a new anaconda virtual environment for package management.
+
 ```shell
-$> pip install -r requirements.txt
+conda create --name botnet python=3.7
+conda activate botnet
+```
+
+Once the env is activated (or if you like living recklessly and don't create a dedicated environment) you can install the necessary packages referencing the `requirements.txt`:
+
+```shell
+pip install -r requirements.txt
 ```
 
 ### Server side
@@ -79,13 +88,35 @@ $> pip install -r requirements.txt
 
 ### Generate a payload
 
-Navigate to agent directory and run the following command
+Navigate to agent directory and run the following command to check all command line parameters `builder.py` accepts. 
 
 ```shell
-$> python builder.py -h
+python builder.py -h
 ```
 
-**It will not compile inside a virtual environment**
+Run the below to generate a standard agent.
+
+```shell
+python builder.py -i 127.0.0.1 -p 8080 -n testagent
+```
+
+**While not verified, it's likely the codebase will not compile inside a virtual environment**
+
+Now, once the stager is generated (named `testagent`), move to the `output` directory and run the executable. 
+
+```shell
+cd output
+./testagent
+```
+
+This will generate the agent payload, `testagent_`, in the same output directory. You'll likely need to change the permissions on the payload, so run the following:
+
+```shell
+chmod 754 testagent_
+./testagent_
+```
+
+After a moment or two of waiting, you should see your 
 
 ### After connection
 
