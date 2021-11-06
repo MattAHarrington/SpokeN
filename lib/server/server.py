@@ -144,6 +144,8 @@ class Server(object):
 
     def examine_conn(self, s, conn_info):
 
+        print(f'examining connection within server. conn_info: {conn_info}')
+
         if type(conn_info) != dict:
             print('Client did not supply a proper data type')
             return

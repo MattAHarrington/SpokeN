@@ -129,7 +129,9 @@ class Executor(object):
         self.write_template(self.bot_template, self.bot_py_temp, args)
 
         payload_output = os.path.dirname(const.PAYLOAD_PATH)
+        print(f"payload output is in finding: {payload_output}")
         self.move_file(self.bot_compiled, payload_output)
+        print(f"moved file to: {self.bot_compiled}, {payload_output}")
 
     def move_file(self, file, output_dir):
         file = os.path.basename(file)
