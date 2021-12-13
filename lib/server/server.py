@@ -115,7 +115,9 @@ class Server(object):
                 pass
 
     def manage_conn(self, sess_obj, conn_info):
+        print(f"Calling manage_conn from inside server.py\nsess_obj: {sess_obj}, conn_info: {conn_info}")
         _shell = shell.Shell(sess_obj, self.interface)
+        print(f"shell: {_shell} \n")
         shell_thread = Thread(target=_shell.start)
         self.interface.connect_client(sess_obj, conn_info, _shell)
         shell_thread.daemon = True

@@ -352,7 +352,10 @@ class Interface(object):
         cmd_id = int(cmd_id)
 
         if override:
+            print("IM OVERRIDINNGGGGGG")
             args.pop(args.index('--override'))
+
+        print(f"command id: {cmd_id}")
 
         if cmd_id == 1:
             return self.ftp_status()

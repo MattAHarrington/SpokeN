@@ -12,7 +12,7 @@ let terminalObj = null;
 
 $(document).ready(function () {
     updateStatus();
-    setInterval(updateStatus, botsFetchInterval * 1000);
+    setInterval(updateStatus, botsFetchInterval * 2000);
 });
 
 // Server

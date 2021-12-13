@@ -24,7 +24,7 @@ app.config["JSON_SORT_KEYS"] = False
 app.config["SECRET_KEY"] = urandom(0x200)  # cookie encryption
 
 # Protection against CSRF attack
-csrf = CSRFProtect(app)
+csrf = CSRFProtect(app) 
 csrf.init_app(app)
 
 # server
@@ -190,14 +190,23 @@ def control_cmd():
     cmd_id = request.form["cmd_id"]
     args = request.form.getlist("args[]")
 
+    print(f"now inside control_cmd(), cmd_id: {cmd_id}\nargs: {args}")
+
     if not cmd_id.isdigit():
         return jsonify({"resp": "cmd_id must be an int type"})
 
     if not "bot_id" in session:
+        print(f"variable 'bot_id' is not in the Flask session...")
         return jsonify({"resp": "A bot must be selected"})
 
+    print(f"gotten past the cmd_id.isdigit() check, bot_id in session check")
+
     if not get_bot(session["bot_id"]):
+        print(f"botid is not in the Flask session")
         return jsonify({"resp": ""})
+
+    print(f"got through the control command requests")
+    print(f'session["botid"]: {get_bot(session["bot_id"])}, cmd_id: {cmd_id}, args: {args}\n')
 
     resp = server.interface.execute_cmd_by_id(session["bot_id"], cmd_id, args)
     return jsonify({"resp": resp})
@@ -445,6 +454,7 @@ def start_server():
 @app.route("/stop-server", methods=["POST"])
 @login_required
 def stop_server():
+    print(f"command received to stop the server!\nserver.is_active:{server.is_active}, session['server_active']: {session['server_active']}")
     if server.is_active or session["server_active"]:
         if server_stop():
             return jsonify({"status": 0, "msg": "Successfully stopped server"})
