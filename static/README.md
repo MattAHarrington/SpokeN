@@ -2,7 +2,7 @@
 
 ### Contents
 
-- /`CSS`/
-- /`font`/
-- /`js`/
-- /`vendor`/
+- /`CSS`/: CNC UI CSS.
+- /`font`/: CNC UI fonts.
+- /`js`/: CNC UI JS, as well as argument routing and implementation.
+- /`vendor`/: Necessary libraries and packages.
