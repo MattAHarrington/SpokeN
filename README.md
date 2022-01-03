@@ -17,8 +17,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-Loki, just like all my other repos is stricly for **educational** purposes.
-
 ### Requirements
 
 -   Python **3.6.x** | **3.7.x** | **3.8.x**
@@ -27,14 +25,17 @@ Loki, just like all my other repos is stricly for **educational** purposes.
 
 -   Windows 10
 -   Kali Linux
+-   MacOS 10.15
 
 ### Bot tested on
 
 -   Windows 10
+-   MacOS 10.15
 
 ### Payload generator tested on
 
 -   Windows 10
+-   MacOS 10.15
 
 ### Features
 
@@ -110,7 +111,7 @@ chmod 754 testagent_
 ./testagent_
 ```
 
-After a moment or two of waiting, you should see your 
+After a moment or two of waiting, you should see you machine's information pop up on the CNC server front end, above the terminal window (as pictured in the screenshot above).
 
 ### After connection
 
