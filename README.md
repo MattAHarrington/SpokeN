@@ -1,6 +1,6 @@
-# Loki
+# SpokeN: Hub-And-Spoke Networking Playground agents
 
-Loki is a simple **R**emote **A**ccess **T**ool.<br/>
+This codebase is a fork of the Open Source [Bitwise's Loki repository](https://github.com/Bitwise-01/Loki). Loki is a simple **R**emote **A**ccess **T**ool.<br/>
 Loki uses **RSA-2048** with **AES-256** to keep your communication with infected machines secure.<br/>
 
 <img src="Screenshots/bots.png" atl=""/>
@@ -52,6 +52,8 @@ SOFTWARE.
 
 https://www.youtube.com/watch?v=UTfZlXGoJ5Y
 
+---
+
 ### Installation
 
 I reccommend you setup a new anaconda virtual environment for package management. As of December 2021, the best resource for installing Anaconda is downloading the [Miniconda](https://docs.conda.io/en/latest/miniconda.html) package for your particular machine and setup.
@@ -80,6 +82,8 @@ pip install -r requirements.txt
     ```
 
 5. Start the server on the same IP as your private IP
+
+---
 
 ### Generate a payload
 
@@ -113,6 +117,8 @@ chmod 754 testagent_
 
 After a moment or two of waiting, you should see you machine's information pop up on the CNC server front end, above the terminal window (as pictured in the screenshot above).
 
+---
+
 ### After connection
 
 -   You can click the id of the bot once it connects
@@ -121,3 +127,5 @@ After a moment or two of waiting, you should see you machine's information pop u
 
 -   The bot will call the server using the Public IP, not the private IP
 -   The bot will call the server using the port specified on the server tab
+
+---
