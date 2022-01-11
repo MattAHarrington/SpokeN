@@ -1,4 +1,4 @@
-# The Lib Directory
+# The Root Lib Directory
 
 ### Contents
 
